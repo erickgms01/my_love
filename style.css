@@ -1,0 +1,434 @@
+:root {
+    --bg-color: #f5efe6;
+    --card-bg: #fffefb;
+    --primary-earth: #8c6d58;
+    --secondary-earth: #6b4e3d;
+    --forest-green: #2d4a34;
+    --sage-green: #588157;
+    --soft-green: #a3b18a;
+    --text-dark: #2c2523;
+    --text-muted: #6e655f;
+    --paper-shadow: 0 12px 30px rgba(45, 74, 52, 0.09);
+    --tape-color: rgba(220, 210, 190, 0.65);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    padding: 2.5rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Textura de Papel Granulado / Vintage */
+.paper-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    background-image: 
+        radial-gradient(var(--soft-green) 0.6px, transparent 0.6px),
+        radial-gradient(var(--primary-earth) 0.4px, var(--bg-color) 0.4px);
+    background-size: 20px 20px, 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sticker Avião com Rastro */
+.plane-wrapper {
+    position: fixed;
+    top: 6%;
+    right: 4%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plane-trail {
+    width: 60px;
+    height: 2px;
+    border-top: 2px dashed var(--sage-green);
+    opacity: 0.6;
+}
+
+.plane-sticker {
+    font-size: 2.5rem;
+    animation: floatPlane 5s ease-in-out infinite;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+}
+
+@keyframes floatPlane {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(-6deg); }
+}
+
+/* Hero Header */
+.hero {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.badge {
+    background-color: var(--forest-green);
+    color: #f5efe6;
+    font-size: 0.85rem;
+    padding: 0.45rem 1.2rem;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.4rem;
+    color: var(--forest-green);
+    margin: 1.2rem 0 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--primary-earth);
+    font-size: 1.15rem;
+    font-style: italic;
+}
+
+/* Galeria Polaroid com Washi Tape */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 4.5rem;
+}
+
+.polaroid {
+    background: white;
+    padding: 14px 14px 20px 14px;
+    box-shadow: var(--paper-shadow);
+    border: 1px solid #ebd9c8;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 240px;
+    text-align: center;
+    position: relative;
+}
+
+/* Fita Adesiva Decorativa (Washi Tape) */
+.washi-tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 24px;
+    background-color: var(--tape-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    backdrop-filter: blur(2px);
+    z-index: 3;
+    border-left: 2px dashed rgba(255,255,255,0.4);
+    border-right: 2px dashed rgba(255,255,255,0.4);
+}
+
+.polaroid:hover {
+    transform: scale(1.06) rotate(0deg) translateY(-5px) !important;
+    z-index: 10;
+    box-shadow: 0 20px 35px rgba(45, 74, 52, 0.15);
+}
+
+.frame-1 { transform: rotate(-3deg); }
+.frame-2 { transform: rotate(2deg); }
+.frame-3 { transform: rotate(-2deg); }
+
+.photo-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #e9e4dc;
+    border-radius: 2px;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1.45rem;
+    color: var(--secondary-earth);
+    margin-top: 12px;
+}
+
+/* Enquadramentos Específicos das Polaroids */
+.frame-1 .photo-wrapper img {
+    object-position: top;
+}
+
+/* Carrossel de Fotos */
+.carousel-section {
+    margin-bottom: 4.5rem;
+    text-align: center;
+}
+
+.carousel-section h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest-green);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: var(--paper-shadow);
+    background: #fff;
+    border: 4px solid #ffffff;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.45s ease-in-out;
+    list-style: none;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(20, 20, 20, 0.75));
+    color: white;
+    padding: 30px 18px 12px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+}
+
+.carousel-btn {
+    background: var(--forest-green);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.carousel-btn:hover {
+    background: var(--sage-green);
+    transform: scale(1.1);
+}
+
+.carousel-btn.prev { left: -22px; }
+.carousel-btn.next { right: -22px; }
+
+/* Enquadramento da foto do Ano Novo */
+.carousel-slide:nth-child(4) img {
+    object-position: center 100%;
+}
+
+/* Carta com Foto em Destaque */
+.letter-card {
+    background: var(--card-bg);
+    padding: 3.5rem 2.8rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--paper-shadow);
+    border-left: 6px solid var(--forest-green);
+    border-right: 1px solid #f0e8dc;
+    border-top: 1px solid #f0e8dc;
+    border-bottom: 1px solid #f0e8dc;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.stamp {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-size: 1.1rem;
+    background: #f4eee2;
+    padding: 6px 14px;
+    border: 1px dashed var(--primary-earth);
+    border-radius: 4px;
+}
+
+.letter-pin {
+    position: absolute;
+    top: -14px;
+    left: 40px;
+    font-size: 1.8rem;
+    filter: drop-shadow(1px 3px 3px rgba(0,0,0,0.2));
+}
+
+.letter-content {
+    display: flex;
+    gap: 2.2rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.featured-photo {
+    flex: 1;
+    max-width: 230px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border: 3px solid #ffffff;
+}
+
+.featured-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.letter-text {
+    flex: 2;
+}
+
+.letter-text h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest-green);
+    margin-bottom: 1.2rem;
+    font-size: 2rem;
+}
+
+.letter-text p {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text-dark);
+    margin-bottom: 1.1rem;
+}
+
+.p-s {
+    font-family: 'Caveat', cursive;
+    font-size: 1.7rem !important;
+    color: var(--primary-earth);
+    margin-top: 1.5rem;
+}
+
+/* Easter Egg Aliança */
+.easter-egg-container {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding-top: 1.2rem;
+    border-top: 1px dashed #e5dec9;
+}
+
+.ring-sticker {
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+    user-select: none;
+}
+
+.ring-sticker:hover {
+    transform: scale(1.35) rotate(10deg);
+}
+
+.secret-message {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--forest-green);
+    display: none;
+    margin-top: 0.8rem;
+    animation: fadeIn 0.6s ease;
+}
+
+.secret-message.visible {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 2.5rem;
+}
+
+/* Animação de Corações caindo ao clicar no anel */
+.heart-particle {
+    position: fixed;
+    top: -20px;
+    font-size: 1.5rem;
+    pointer-events: none;
+    z-index: 1000;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .letter-content {
+        flex-direction: column;
+    }
+
+    .featured-photo {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .hero h1 { font-size: 2.4rem; }
+    .carousel-slide img { height: 320px; }
+    .carousel-btn.prev { left: 4px; }
+    .carousel-btn.next { right: 4px; }
+    .letter-card { padding: 2.5rem 1.5rem 1.8rem; }
+}
